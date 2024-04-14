@@ -12,22 +12,24 @@ class Player: SKSpriteNode {
     private let movementAmount: CGFloat = 70.0
     private let movementAnimationDuration: TimeInterval = 0.15
     
-    func move(inDirection direction: UISwipeGestureRecognizer.Direction) {
+    func move(
+        inDirection direction: UISwipeGestureRecognizer.Direction
+    ) {
         switch(direction) {
-            case .up:
-                moveUp()
-                break
-            case .down:
-                moveDown()
-                break
-            case .left:
-                moveLeft()
-                break
-            case .right:
-                moveRight()
-                break
-            default:
-                return
+        case .up:
+            moveUp()
+            break
+        case .down:
+            moveDown()
+            break
+        case .left:
+            moveLeft()
+            break
+        case .right:
+            moveRight()
+            break
+        default:
+            return
         }
         
         self.animateMovement(inDirection: direction)
@@ -50,7 +52,7 @@ class Player: SKSpriteNode {
     }
     
     private func animateMovement(inDirection direction: UISwipeGestureRecognizer.Direction) {
-        self.run(SKAction.repeat(createAnimationAction(inDirection: direction), count: 1))
+        self.run(createAnimationAction(inDirection: direction))
     }
     
     private func createAnimationAction(inDirection direction: UISwipeGestureRecognizer.Direction) -> SKAction {
@@ -58,10 +60,10 @@ class Player: SKSpriteNode {
         let directionWord: String = swipeDirectionsToWords[direction.rawValue] ?? "down"
         
         let animation: SKAction = SKAction.animate(with: [
-                    SKTexture(imageNamed: "\(directionWord)_1"),
-                    SKTexture(imageNamed: "\(directionWord)_2"),
-                    SKTexture(imageNamed: "\(directionWord)_0")
-                ], timePerFrame: movementAnimationDuration)
+            SKTexture(imageNamed: "\(directionWord)_1"),
+            SKTexture(imageNamed: "\(directionWord)_2"),
+            SKTexture(imageNamed: "\(directionWord)_0")
+        ], timePerFrame: movementAnimationDuration)
         
         return animation
     }

@@ -12,7 +12,7 @@ class GameScene: SKScene {
     var player: Player!
     
     override func didMove(to view: SKView) {
-        player = self.childNode(withName: "player") as! Player
+        player = self.childNode(withName: "player") as? Player
         
         let swipeDirections: [UISwipeGestureRecognizer.Direction] = [.up, .down, .left, .right]
         
